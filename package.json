@@ -1,0 +1,25 @@
+{
+  "name": "18-social-network",
+  "description": "## Table of Contents",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebonygrrl/18-social-network.git"
+  },
+  "author": "Tori Booker",
+  "license": "GPL 3.0",
+  "bugs": {
+    "url": "https://github.com/ebonygrrl/18-social-network/issues"
+  },
+  "homepage": "https://github.com/ebonygrrl/18-social-network#readme",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1"
+  }
+}
