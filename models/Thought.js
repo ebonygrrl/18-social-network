@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema, model } = require('mongoose');
 const ObjectId = Schema.ObjectId;
 
+// schema for user thoughts
 const thoughtSchema = new Schema({
   thoughtText: {
     type: String,
@@ -9,15 +9,54 @@ const thoughtSchema = new Schema({
     minLength: 1,
     maxLength: 280
   },
-  createdAt: Date,
+  createdAt: {
+    type: Date, 
+    default: Date.now
+  },
   username: {
     type: String,
     required: true
   }
+},
+{
+    toJSON: { virtuals: true },
+
 });
 
-thoughtSchema.virtual('reactions').get(function() {
-    return this.reactions;
-});
+// create a virtual property to get user reactions without adding to database
+thoughtSchema
+    .virtual('reactionCount')
+    .get(function() {
+        return this.reactionCount;
+    })
+    .set(function(count) {
+        let thisCount = count++;
+        this.set({ thisCount });
+    });
 
-module.exports = mongoose.model('Thought', thoughtSchema);
+module.exports = model('Thought', thoughtSchema);
+
+// Schema Settings
+
+// Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
+
+// Reaction (SCHEMA ONLY)
+
+// reactionId
+
+// Use Mongoose's ObjectId data type
+// Default value is set to a new ObjectId
+// reactionBody
+
+// String
+// Required
+// 280 character maximum
+// username
+
+// String
+// Required
+// createdAt
+
+// Date
+// Set default value to the current timestamp
+// Use a getter method to format the timestamp on query
