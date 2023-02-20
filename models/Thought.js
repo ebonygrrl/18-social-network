@@ -16,7 +16,8 @@ const thoughtSchema = new Schema({
   username: {
     type: String,
     required: true
-  }
+  },
+  raections: [reactionSchema]
 },
 {
     toJSON: { virtuals: true },
@@ -25,13 +26,8 @@ const thoughtSchema = new Schema({
 
 // create a virtual property to get user reactions without adding to database
 thoughtSchema
-    .virtual('reactionCount')
-    .get(function() {
-        return this.reactionCount;
-    })
-    .set(function(count) {
-        let thisCount = count++;
-        this.set({ thisCount });
+    .virtual('reactionCount', {
+        
     });
 
 module.exports = model('Thought', thoughtSchema);
@@ -46,15 +42,18 @@ module.exports = model('Thought', thoughtSchema);
 
 // Use Mongoose's ObjectId data type
 // Default value is set to a new ObjectId
+
 // reactionBody
 
 // String
 // Required
 // 280 character maximum
+
 // username
 
 // String
 // Required
+
 // createdAt
 
 // Date
