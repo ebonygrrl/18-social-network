@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reactions');
 const ObjectId = Schema.ObjectId;
 
 // schema for user thoughts
