@@ -33,7 +33,7 @@ module.exports = {
   // delete user / delete
   deleteUser(req, res) {
     console.log(req);
-    User.findById({})  //req.params
+    User.findByIdAndDelete(req.params.id)  //req.params
     .then(data => res.json({data, message: 'The user has been deleted.'}))
     .catch(err => console.log(err));
   }
