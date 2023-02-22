@@ -6,9 +6,7 @@ module.exports = {
   createUsers(req, res) {
     User.create({
       username: req.body.username, 
-      email: req.body.email,
-      thoughts: req.body.thoughts,
-      friends: req.body.friends
+      email: req.body.email
     })
     .then(data => res.json(data))
     .catch(err => console.log(err));
@@ -21,20 +19,23 @@ module.exports = {
   },
   // update user / put
   updateUser(req, res) {
-    User.updateOne({
+    User.updateOne(req.params.id, {
       username: req.body.username, 
-      email: req.body.email,
-      thoughts: req.body.thoughts,
-      friends: req.body.friends
+      email: req.body.email
     })
     .then(data => res.json(data))
     .catch(err => console.log(err));
   }, 
   // delete user / delete
   deleteUser(req, res) {
-    console.log(req);
-    User.findByIdAndDelete(req.params.id)  //req.params
+    User.findByIdAndDelete(req.params.id)
     .then(data => res.json({data, message: 'The user has been deleted.'}))
     .catch(err => console.log(err));
   }
+
+
+  // GET SINGLE USER BY ID WITH THOUGHT AND FRIEND DATA
+
+
+
 };
