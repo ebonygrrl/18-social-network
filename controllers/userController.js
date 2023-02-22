@@ -1,22 +1,24 @@
 const mongoose = require('mongoose');
-const { User, Thought } = require('../../models');
+const { User, Thought } = require('../models');
 
-// add new user 
-const createUsers = async (req, res) => {
-  await User.create({
+module.exports = {
+  // add new user 
+createUsers(req, res) {
+  User.create({
     username: req.body.username, 
     email: req.body.email,
-    thoughts: req.body.thoughts,
-    friends: req.body.friends
+    //thoughts: req.body.thoughts,
+    //friends: req.body.friends
   })
   .then(data => console.log(data))
   .catch(err => console.log(err));
-};
+}
 
 // find all users
-const findAllUsers = (req, res) => {
-  User.find({});  
-};
+// const findAllUsers = (req, res) => {
+//   User.find({});  
+// };
+}
 
 // create new post
 // router.post('/api/users', async (req, res) => {
@@ -69,4 +71,4 @@ const findAllUsers = (req, res) => {
 //     res.redirect('/');
 // });
 
-module.exports = { createUsers, findAllUsers };
+//module.exports = { createUsers, findAllUsers };
