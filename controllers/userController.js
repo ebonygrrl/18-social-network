@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
   // add new user / post
@@ -9,7 +9,10 @@ module.exports = {
       email: req.body.email
     })
     .then(data => res.json(data))
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      res.json(err)
+    });
   },
   // get all users / get
   getUsers (req, res) {
@@ -31,11 +34,16 @@ module.exports = {
     User.findByIdAndDelete(req.params.id)
     .then(data => res.json({data, message: 'The user has been deleted.'}))
     .catch(err => console.log(err));
-  }
+  },
   // GET SINGLE USER BY ID WITH THOUGHT AND FRIEND DATA
-
-
-
+  getOneUser (req, res) {
+    User.findById(req.params.id)
+    .then(userData => {
+      Thought.find({id: userData.id})
+      .then(thoughtData => res.json(thoughtData))
+      .catch(err => console.log(err));
+    });
+  }
 };
 
 

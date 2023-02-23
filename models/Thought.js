@@ -7,7 +7,7 @@ function formatDate(date) {
 
 // schema for reactions
 const reactionSchema = new Schema({
-  _id: new ObjectId,
+  _id: ObjectId,
   reactionBody: {
     type: String,
     required: true,

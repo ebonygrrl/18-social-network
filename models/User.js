@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const ObjectId = Schema.ObjectId;
-const emailVal = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+const emailVal = /[^\s]*@[a-z0-9.-]*/i;
 
 // schema for users
 const userSchema = new Schema({
@@ -35,8 +35,9 @@ userSchema.virtual('friendCount', {
   ref: 'User',
   localField: '_id',
   foreignField: 'friends',
-  count: true})
-.get(function() {
+  count: true
+})
+.set(function() {
   return this.friendCount.length;
 });
 
