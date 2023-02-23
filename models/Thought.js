@@ -49,9 +49,13 @@ const thoughtSchema = new Schema({
 });
 
 // create a virtual property to get user reactions without adding to database
-thoughtSchema
-    .virtual('reactionCount', {
-        
-    });
+thoughtSchema.virtual('reactionCount', {
+  ref: 'Thought',
+  localField: '_id',
+  foreignField: 'reactions',
+  count: true })
+.get(function () {
+  return this.reactionCount.length;
+});
 
 module.exports = model('Thought', thoughtSchema);

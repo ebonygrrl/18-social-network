@@ -32,12 +32,12 @@ const userSchema = new Schema({
 }, { toJSON: { virtuals: true } });
 
 userSchema.virtual('friendCount', {
-  ref: '',
+  ref: 'User',
   localField: '_id',
-  foreignField: '',
+  foreignField: 'friends',
   count: true})
-  .get(function() {
-    return this.friendCount.length;
-  });
+.get(function() {
+  return this.friendCount.length;
+});
 
 module.exports = model('User', userSchema);
