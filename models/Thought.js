@@ -22,6 +22,7 @@ const reactionSchema = new Schema({
     type: Date, 
     default: Date.now,
     get: formatDate
+    
   }
 });
 
@@ -39,7 +40,8 @@ const thoughtSchema = new Schema({
   },
   username: {
     type: String,
-    required: true
+    required: true,
+    ref: 'User'
   },
   raections: [reactionSchema]
 },
@@ -54,7 +56,7 @@ thoughtSchema.virtual('reactionCount', {
   localField: '_id',
   foreignField: 'reactions',
   count: true })
-.get(function () {
+.set(function () {
   return this.reactionCount.length;
 });
 

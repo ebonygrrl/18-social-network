@@ -21,10 +21,10 @@ const userSchema = new Schema({
       message: 'Please use a valid email address.'
     }
   },
-  thoughts: {
+  thoughts: [{
     type: ObjectId,
     ref: 'Thought'
-  },
+  }],
   friends:  [{
     type: ObjectId,
     ref: 'User'

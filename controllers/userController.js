@@ -39,7 +39,9 @@ module.exports = {
   getOneUser (req, res) {
     User.findById(req.params.id)
     .then(userData => {
-      Thought.find({id: userData.id})
+      // console.log(userData);
+      // res.json(userData);
+      Thought.find({id: userData._id})
       .then(thoughtData => res.json(thoughtData))
       .catch(err => console.log(err));
     });
