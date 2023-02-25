@@ -19,6 +19,9 @@ module.exports = {
       console.log(err);
       res.json(err)
     });
+  },
+  getThoughts (req, res) {
+    
   }
   // get all users / get
 //   getUsers (req, res) {
