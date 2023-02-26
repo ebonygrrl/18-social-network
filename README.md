@@ -12,7 +12,7 @@
 
 An API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.
 
-## Installations {#install}
+## Installations{#install}
 
 This tech stack uses ExpressJS and MongoDB. Please be sure to have installed at the time of the application's execution.
 
@@ -31,13 +31,33 @@ This tech stack uses ExpressJS and MongoDB. Please be sure to have installed at 
 
 ## Usage {#usage}
 
-** Add new users
+* Add new users
 ```
 {
   "username": "lernantino",
   "email": "lernantino@gmail.com"
 }
 ```
+
+* Add new thoughts
+```
+{
+  "thoughtText": "Here's a cool thought ...",
+  "username": "lernantino",
+  "userId": "(get userid from database)"
+}
+```
+
+* Add new reaction
+```
+{
+	"reactionId": "507f191e810c19729de860ea",
+	"reactionBody": "This is so cool",
+	"username": "sheldoncooper"
+}
+```
+
+* To add a friend, paste other users _id into the HTTP request where prompted.
 
 <!-- ![Sign up thumbnail](./screenshots/Sign-Up-The-Tech-Blog.png)
 ![Home page thumbnail](./screenshots/Home-The-Tech-Blog.png)
