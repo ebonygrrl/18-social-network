@@ -4,17 +4,18 @@ const { User, Thought } = require('../models');
 module.exports = {
   // add new user / post
   addThought (req, res) {
-    // {
-    //   "thoughtText": "Here's a cool thought...",
-    //   "username": "lernantino",
-    //   "_id": "63f80f5ccd5542addab64e3c",
-    //   "createdAt": "2023-02-24T01:14:04.761Z",
-    //   "raections": [],
-    //   "__v": 0,
-    //   "id": "63f80f5ccd5542addab64e3c"
-    // }
     Thought.create(req.body)
-    .then(data => res.json(data))
+    .then(data => {
+      //res.json(data);
+      User.findOneAndUpdate({_id: req.body.userId},{
+        $push: { thoughts: data.thoughtText, id: data.id, created: data.createdAt }
+      })
+      .then(userData => console.log(userData))
+      .catch(err => {
+        console.log(err);
+        res.json(err)
+       });
+    })
     .catch(err => {
       console.log(err);
       res.json(err)
@@ -22,7 +23,7 @@ module.exports = {
   },
   getThoughts (req, res) {
     
-  }
+  } 
   // get all users / get
 //   getUsers (req, res) {
 //     User.find()    

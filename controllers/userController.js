@@ -22,7 +22,7 @@ module.exports = {
   },
   // update user / put
   updateUser (req, res) {
-    User.updateOne(req.params.id, {
+    User.findOneAndUpdate({_id: req.params.id}, {
       username: req.body.username, 
       email: req.body.email
     })
@@ -39,28 +39,20 @@ module.exports = {
   getOneUser (req, res) {
     User.findById(req.params.id)
     .then(userData => {
-      // console.log(userData);
-      // res.json(userData);
-      Thought.find({id: userData._id})
-      .then(thoughtData => res.json(thoughtData))
-      .catch(err => console.log(err));
+      console.log(userData);
+      res.json(userData);
     });
   }
 };
 
 
-// GET all users
+// GET all users - done
 
-// GET a single user by its _id and populated thought and friend data
+// GET a single user by its _id and populated thought and friend data - done
 
-// POST a new user:
+// POST a new user: - done
 
-// // example data
-// {
-//   "username": "lernantino",
-//   "email": "lernantino@gmail.com"
-// }
-// PUT to update a user by its _id
+// PUT to update a user by its _id - done
 
 // DELETE to remove user by its _id
 
