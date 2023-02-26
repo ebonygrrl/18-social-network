@@ -1,13 +1,16 @@
-const { Schema, model } = require('mongoose');
-const ObjectId = Schema.ObjectId;
+const { Schema, Types, model } = require('mongoose');
+const id = Types.ObjectId();
 
-function formatDate(date) {
-  return date.toLocaleTimeString();
+const formatDate = (date) => {
+  return `${ date.toLocaleString('default', {dateStyle: 'medium'}) } at ${ date.toLocaleString('default', {timeStyle: 'short'}) }`;
 }
 
 // schema for reactions
 const reactionSchema = new Schema({
-  _id: ObjectId,
+  reactionId: {
+    type: Types.ObjectId,
+    default: id
+  },
   reactionBody: {
     type: String,
     required: true,
@@ -21,7 +24,11 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date, 
     default: Date.now,
-    get: formatDate   
+    get: formatDate
+  }
+}, {
+  toJSON: {
+    getters: true // needed for time formats
   }
 });
 
@@ -50,7 +57,7 @@ const thoughtSchema = new Schema({
 
 });
 
-// create a virtual property to get user reactions without adding to database
+// create a virtual property to count thought reactions
 thoughtSchema.virtual('reactionCount')
 .get(function () {
   return this.reactions.length;

@@ -31,6 +31,7 @@ const userSchema = new Schema({
   }]
 }, { toJSON: { virtuals: true } });
 
+// create a virtual property to count user friends
 userSchema.virtual('friendCount')
 .get(function() {
   return this.friends.length;
