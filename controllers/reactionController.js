@@ -13,29 +13,10 @@ module.exports = {
   }, 
   //delete reaction
   deleteReaction (req, res) {
-    User.findByIdAndUpdate({_id: req.params.thoughtId}, {
-      $pull: { friends: req.params.friendId }
+    Thought.findByIdAndUpdate({_id: req.params.thoughtId}, {
+      $pull: { reactions: req.body }
     })
-    .then(data => res.json({data, message: 'Reaction has been deleted.'}))
+    .then(data => res.json({message: 'Reaction has been deleted.'}))
     .catch(err => console.log(err));
   }
 };
-
-
-  // delete thought
-//   deleteThoughts (req, res) {
-//     let thoughtId = req.params.userId;
-
-//     User.findByIdAndUpdate(thoughtId, {
-//       $set: { thoughts: [] }
-//     }, {
-//       multi: true
-//     })
-//     .then(data => {
-//       console.log(data);
-
-//       res.json(data);      
-//     })
-//     .catch(err => console.log(err));
-//   }
-// };

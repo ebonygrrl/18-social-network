@@ -1,50 +1,55 @@
-# The Tech Blog
+# Social Network API
 
 ## Table of Contents
 
 1. [Description](#desc)
-2. [Installation](#install)
+2. [Installations](#install)
 3. [Usage](#usage)
 4. [Demo](#demo)
 5. [License](#license)
 
-<a name="desc"></a>
-## Description 
+## Description {#desc}
 
 An API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.
 
-<a name="install"></a> 
-## Installation
+## Installations {#install}
 
-1. Clone this repo and update database credentials by entering your MySQL password located .env.EXAMPLE.
-2. Rename the file to ".env".
-3. Upload SQL script to your database, which is located in db > schema.sql.
-4. Seed the database by entering `npm run seed` into your terminal.
-5. Install this application's dependencies by entering `npm i` into your terminal.
-6. Invoke app by entering `npm run dev` into your terminal.
+This tech stack uses ExpressJS and MongoDB. Please be sure to have installed at the time of the application's execution.
 
-<a name="usage"></a> 
-## Usage
+### Install Application
 
-* Upon opening the application, if there are no posts in the database, the user is encouraged to either login or sign up for an account.
-* Once an account has been created, the user will be redirected to the home page and pointed to creating their first post from the dashboard.
-* While logged in, clicking on a post title from the home page will allow users to leave a comment.
-* While logged in, clicking on a post title from the dashboard will allow the user to edit the post or delete it.
-* When logged out, clicking on a post title from the home page will allow users to view all comments attached to the post.
+1. Clone this repo.
+2. Using your favorite CLI, navigate to the project folder and run `code .` to open Visual Studio.
+3. Install this application's dependencies by entering `npm install` into your terminal.
+4. Invoke app by entering `npm run dev` into your terminal.
 
-![Sign up thumbnail](./screenshots/Sign-Up-The-Tech-Blog.png)
+### Install Insomnia HTTP Requests
+1. Open Insomnia and click on the home icon.
+2. Select Import From > File.
+3. Locate the *insomnia_import.json* file within the extras directory for this application and click Import.
+4. Click on the Social Network collection and proceed to use as normal.
+
+## Usage {#usage}
+
+** Add new users
+```
+{
+  "username": "lernantino",
+  "email": "lernantino@gmail.com"
+}
+```
+
+<!-- ![Sign up thumbnail](./screenshots/Sign-Up-The-Tech-Blog.png)
 ![Home page thumbnail](./screenshots/Home-The-Tech-Blog.png)
 ![Dashboard thumbnail](./screenshots/Dashboard-The-Tech-Blog.png)
-![Create new post thumbnail](./screenshots/Create-New-Post-The-Tech-Blog.png)
+![Create new post thumbnail](./screenshots/Create-New-Post-The-Tech-Blog.png) -->
+ 
+## Demo {#demo}
 
-<a name="demo"></a> 
-## Demo
+Here's a [video](https://youtu.be/UQWiPuTmdt8) of this Social Network API in use.
 
-Here's a [video](https://youtu.be/UQWiPuTmdt8) of The Tech Blog in use.
+<!-- [![Video thumbnail](./screenshots/Login-The-Tech-Blog.png)](https://youtu.be/UQWiPuTmdt8) -->
 
-[![Video thumbnail](./screenshots/Login-The-Tech-Blog.png)](https://youtu.be/UQWiPuTmdt8)
-
-<a name="license"></a> 
-## License
+## License {#license}
 
 All code is released under the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html).

@@ -1,5 +1,4 @@
 const { Schema, Types, model } = require('mongoose');
-const id = Types.ObjectId();
 
 const formatDate = (date) => {
   return `${ date.toLocaleString('default', {dateStyle: 'medium'}) } at ${ date.toLocaleString('default', {timeStyle: 'short'}) }`;
@@ -9,7 +8,7 @@ const formatDate = (date) => {
 const reactionSchema = new Schema({
   reactionId: {
     type: Types.ObjectId,
-    default: id
+    default: () => new Types.ObjectId()
   },
   reactionBody: {
     type: String,
@@ -26,7 +25,8 @@ const reactionSchema = new Schema({
     default: Date.now,
     get: formatDate
   }
-}, {
+}, {  
+  id: false,
   toJSON: {
     getters: true // needed for time formats
   }

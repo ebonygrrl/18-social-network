@@ -43,7 +43,6 @@ module.exports = {
 
     Thought.findById(thoughtId)
     .then(async data => {
-      //console.log(data);
 
       // remove thought id from user thought array
       await User.findOneAndUpdate({username: data.username}, {

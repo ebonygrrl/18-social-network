@@ -52,7 +52,3 @@ module.exports = {
     });
   }
 };
-
-// DELETE to remove user by its _id
-
-// BONUS: Remove a user's associated thoughts when deleted.

@@ -1,5 +1,4 @@
-const { Schema, model } = require('mongoose');
-const ObjectId = Schema.ObjectId;
+const { Schema, Types, model } = require('mongoose');
 const emailVal = /[^\s]*@[a-z0-9.-]*/i;
 
 // schema for users
@@ -22,14 +21,17 @@ const userSchema = new Schema({
     }
   },
   thoughts: [{
-    type: ObjectId,
+    type: Types.ObjectId,
     ref: 'Thought'
   }],
   friends:  [{
-    type: ObjectId,
+    type: Types.ObjectId,
     ref: 'User'
   }]
-}, { toJSON: { virtuals: true } });
+}, { 
+  id: false, 
+  toJSON: { virtuals: true } 
+});
 
 // create a virtual property to count user friends
 userSchema.virtual('friendCount')
