@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { User, Thought } = require('../models');
+const { User } = require('../models');
 
 module.exports = {
   // update user and addFriend

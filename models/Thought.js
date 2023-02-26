@@ -21,7 +21,7 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date, 
     default: Date.now,
-    get: formatDate    
+    get: formatDate   
   }
 });
 
@@ -51,13 +51,9 @@ const thoughtSchema = new Schema({
 });
 
 // create a virtual property to get user reactions without adding to database
-thoughtSchema.virtual('reactionCount', {
-  ref: 'Thought',
-  localField: '_id',
-  foreignField: 'reactions',
-  count: true })
-.set(function () {
-  return this.reactionCount.length;
+thoughtSchema.virtual('reactionCount')
+.get(function () {
+  return this.reactions.length;
 });
 
 module.exports = model('Thought', thoughtSchema);
