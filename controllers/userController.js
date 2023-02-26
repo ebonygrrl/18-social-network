@@ -32,7 +32,10 @@ module.exports = {
   // delete user / delete
   deleteUser (req, res) {
     User.findByIdAndDelete(req.params.id)
-    .then(data => res.json({data, message: 'The user has been deleted.'}))
+    .then(data => {
+      // delete associated thoughts
+      res.json({data, message: 'The user has been deleted.'})
+    })
     .catch(err => console.log(err));
   },
   // GET SINGLE USER BY ID WITH THOUGHT AND FRIEND DATA
