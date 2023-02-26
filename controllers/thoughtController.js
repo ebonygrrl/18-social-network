@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { User, Thought } = require('../models');
 
 module.exports = {
-  // add new user / post
+  // add new thoughts
   addThought (req, res) {
     Thought.create(req.body)
     .then(data => {
@@ -21,15 +21,20 @@ module.exports = {
       res.json(err)
     });
   },
+  // get all thoughts
   getThoughts (req, res) {
-    
-  } 
-  // get all users / get
-//   getUsers (req, res) {
-//     User.find()    
-//     .then(data => res.json(data))
-//     .catch(err => console.log(err));
-//   },
+    User.find()    
+    .then(data => res.json(data))
+    .catch(err => console.log(err));    
+  },
+  // get single thought
+  getOneThought (req, res) {
+    Thought.findById(req.params.id)
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+  }
+  
+  
 //   // update user / put
 //   updateUser (req, res) {
 //     User.updateOne(req.params.id, {
