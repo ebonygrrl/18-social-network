@@ -31,14 +31,19 @@ module.exports = {
   }, 
   // delete user / delete
   deleteUser (req, res) {
-    User.findByIdAndDelete(req.params.id)
-    .then(data => {
+    let userId = req.params.id;
+
+    User.findById(userId)
+    .then(async data => {
       // delete associated thoughts
-      res.json({data, message: 'The user has been deleted.'})
+      await Thought.deleteMany({username: data.username});
+      await User.deleteOne({_id: userId});
+
+      res.json({message: 'The user has been deleted.'})
     })
     .catch(err => console.log(err));
   },
-  // GET SINGLE USER BY ID WITH THOUGHT AND FRIEND DATA
+  // get single user by id
   getOneUser (req, res) {
     User.findById(req.params.id)
     .then(userData => {
@@ -47,15 +52,6 @@ module.exports = {
     });
   }
 };
-
-
-// GET all users - done
-
-// GET a single user by its _id and populated thought and friend data - done
-
-// POST a new user: - done
-
-// PUT to update a user by its _id - done
 
 // DELETE to remove user by its _id
 

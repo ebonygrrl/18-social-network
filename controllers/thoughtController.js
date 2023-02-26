@@ -34,26 +34,26 @@ module.exports = {
     Thought.findByIdAndUpdate({_id: req.params.id}, {
       thoughtText: req.body.thoughtText, 
     })
-    .then(data => res.json(data))
+    .then(data => res.json({message: 'Thought updated.'}))
     .catch(err => console.log(err));
   }, 
   // delete thought
   deleteThought (req, res) {
     let thoughtId = req.params.id;
-    let userUpdate;
 
     Thought.findById(thoughtId)
     .then(async data => {
       //console.log(data);
 
       // remove thought id from user thought array
-      userUpdate = await User.findOneAndUpdate({username: data.username}, {
+      await User.findOneAndUpdate({username: data.username}, {
         $pull: { thoughts: thoughtId }
-      }).then(fauData => console.log(fauData));
+      });
 
       // delete document
-      await Thought.deleteOne({_id: thoughtId})
-      .then(deletedData => res.json({userUpdate, deletedData, message: 'Thought has been deleted.'}));      
+      await Thought.deleteOne({_id: thoughtId});
+
+    res.json({message: 'Thought has been deleted.'});      
     })
     .catch(err => console.log(err));
   }
