@@ -6,9 +6,9 @@ module.exports = {
   addThought (req, res) {
     Thought.create(req.body)
     .then(data => {
-      //res.json(data);
-      User.findOneAndUpdate({_id: req.body.userId},{
-        $push: { thoughts: data.thoughtText, id: data.id, created: data.createdAt }
+      res.json(data);
+      User.updateOne({_id: req.body.userId}, {
+        $push: { thoughts: data.id}
       })
       .then(userData => console.log(userData))
       .catch(err => {
