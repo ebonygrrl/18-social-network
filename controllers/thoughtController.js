@@ -7,7 +7,7 @@ module.exports = {
     Thought.create(req.body)
     .then(data => {
       User.updateOne({_id: req.body.userId}, {
-        $push: { thoughts: data.id}
+        $push: { thoughts: data._id}
       })
       .then(userData => res.json({data, userData}))
       .catch(err => console.log(err));
