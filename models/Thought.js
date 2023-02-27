@@ -53,8 +53,11 @@ const thoughtSchema = new Schema({
   reactions: [reactionSchema]
 },
 {
-    toJSON: { virtuals: true },
-
+  id: false,
+  toJSON: { 
+    virtuals: true,
+    getters: true // needed for time formats 
+  }
 });
 
 // create a virtual property to count thought reactions
