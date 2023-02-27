@@ -11,12 +11,10 @@
 <a name="desc"></a>
 ## Description
 
-An API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.
+This is an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. This application uses Express.js for routing, a MongoDB database, and the Mongoose ODM.
 
 <a name="install"></a> 
 ## Installations
-
-This tech stack uses ExpressJS and MongoDB. Please be sure to have installed at the time of the application's execution.
 
 ### Install Application
 
