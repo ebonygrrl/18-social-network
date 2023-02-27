@@ -26,9 +26,9 @@ This tech stack uses ExpressJS and MongoDB. Please be sure to have installed at 
 4. Invoke app by entering `npm run dev` into your terminal.
 
 ### Install Insomnia HTTP Requests
-1. Open Insomnia and click on the home icon.
-2. Select Import From > File.
-3. Locate the *insomnia_import.json* file within the extras directory for this application and click Import.
+1. Navigate to the extras directory within this repository, right click on *insomnia_import.json* and save file to your local drive.
+2. Open Insomnia and click on the home icon.
+3. Select Import From > File, locate the import file on your local drive and click Import.
 4. Click on the Social Network collection and proceed to use as normal.
 
 <a name="usage"></a> 
